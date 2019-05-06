@@ -23,7 +23,6 @@
 
 - **One to one, password to key**
 - Require the password to be 
-
 - Split into sets of 3
   - ord() and the 1st/2nd/3rd char in each set has its own numeric equivalent, append to in-progress key
 - Divide the sum of the digits by the number of digits (val1), then find the remainder of that number divided by 10 (val2)
