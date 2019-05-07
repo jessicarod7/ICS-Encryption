@@ -1,5 +1,10 @@
 # Goals
 
+## ASCII values
+
+~~0-31 are invalid~~  
+32-255 = **224 valid chars**
+
 ## Requirements
 
 - read from a preset text file
@@ -26,14 +31,14 @@
 - Split into sets of 3
   - ord() and the 1st/2nd/3rd char in each set has its own numeric equivalent, append to in-progress key
 - Divide the sum of the digits by the number of digits (val1), then find the remainder of that number divided by 10 (val2)
-- Add val2 after the floor division halfway point of the in-progress key, and finally divide by val1 (gives key)
+- Add val2 after the floor division halfway point of the in-progress key, and finally divide by val1 (gives key), appending val2 again repeatedly if key length is less than 3
 
 ### Text Encoding
 
 - ord() every character into a list
-- Modulo divide key[-3:] by 255 and right shift by that number, looping as necessary
+- Modulo divide key[-3:] by 224 and right shift by that number, looping as necessary
 - Add 3*key[0] to every key[1]^th space in the original, looping as necessary
-- Add digits of key repeatedly until the number is single digit, and then **insert** random.randint(0,9) to every ^th position (this may not run, that's ok)
+- Add digits of key repeatedly until the number is single digit, and then **insert** random.randint(0,223)+32 to every ^th position (this may not run, that's ok)
 - chr() back to a string and save
 
 ### Text Decoding
@@ -44,10 +49,10 @@
 ```python
 a=[1,1,2,1,1,2,1,1,2,1]
 
-for i in range(n): # n = number of times it occurs
+for i in range(n): # n = number of times it can possible occur (division math req.)
     del a[2*(i+1)] # 2 = the single digit number from the key
 ```
 
 - Subtract 3*key[0] from every key[1]^th space in the original, reverse looping as necessary
-- Modulo divide key[-3:] by 255 and left shift by that number, looping as necessary
+- Modulo divide key[-3:] by 224 and left shift by that number, looping as necessary
 - chr() back to a string and save
