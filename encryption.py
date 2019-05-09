@@ -19,6 +19,7 @@ class MenuInterface(tk.Frame):
     # master: CLASS:  references the root class
     def __init__(self, master=None):
         tk.Frame.__init__(self, master) # Probably needs to be Toplevel
+        # You can also clear a frame by creating a frame inside a frame and destroying that 
         
     def load_game(self):
         pass
