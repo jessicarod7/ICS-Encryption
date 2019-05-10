@@ -56,3 +56,5 @@ for i in range(n): # n = number of times it can possible occur (division math re
 - Subtract 3*key[0] from every key[1]^th space in the original, reverse looping as necessary
 - Modulo divide key[-3:] by 224 and left shift by that number, looping as necessary
 - chr() back to a string and save
+
+[https://pythonprogramming.net/object-oriented-programming-crash-course-tkinter/](https://pythonprogramming.net/object-oriented-programming-crash-course-tkinter/)
