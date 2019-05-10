@@ -12,15 +12,29 @@ Data Dictionary
 
 """
 
-# This class generates the GUI for the program.
-# tk.Frame: CLASS: provides the Tkinter frame to the class
-class MenuInterface(tk.Frame):
+# This class generates the GUI for the program and handles major navigation.
+# tk.Tk: CLASS: provides the Tkinter interface to the class
+class MenuInterface(tk.Tk):
     # This function initializes the class and its Tkinter frame
-    # master: CLASS:  references the root class
-    def __init__(self, master=None):
-        tk.Frame.__init__(self, master) 
-        # Option 1: remove the class as it is and call Toplevel windows as needed (Note: even when called
-        # independently, Toplevel windows ALWAYS open 2 instances, so I strongly suggest Option 2)
-        # Option 2: maintain the Frame for the entire operation, and open Toplevels for en/decryption
-    def load_game(self):
-        pass
+    def __init__(self):
+        # Initialize window
+        tk.Tk.__init__(self)
+        tk.Frame.__init__(self)
+        self.main_menu()
+    # End __init__
+        
+    def main_menu(self):
+        main = tk.Frame(self)
+        main.title('Encryption Program')
+        main.lift()
+        
+        # Add text and options
+        tk.Label(main, text='Welcome to the Encryption program! This program will take a text file that you specify, and'+
+                 'then either encrypt or decrypt its data with the provided password. Select an option to the right to get started.', justify='center',
+                 wraplength=70, height=2).grid(rowspan=3, row=0, column=0)
+        tk.Button(main, text='Encrypt data', command=self.encrypt, anchor='center').grid(column=1, row=0, sticky='NSEW')
+        tk.Button(main, text='Decrypt data', command=self.decrypt, anchor='center').grid(column=1, row=1, sticky='NSEW')
+        tk.Button(main, text='Quit program', command=self.quit, anchor='center').grid(column=1, row=2, sticky='NSEW')
+
+a=MenuInterface()
+a.mainloop()
