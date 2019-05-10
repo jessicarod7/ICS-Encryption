@@ -18,8 +18,9 @@ class MenuInterface(tk.Frame):
     # This function initializes the class and its Tkinter frame
     # master: CLASS:  references the root class
     def __init__(self, master=None):
-        tk.Frame.__init__(self, master) # Probably needs to be Toplevel
-        # You can also clear a frame by creating a frame inside a frame and destroying that 
-        
+        tk.Frame.__init__(self, master) 
+        # Option 1: remove the class as it is and call Toplevel windows as needed (Note: even when called
+        # independently, Toplevel windows ALWAYS open 2 instances, so I strongly suggest Option 2)
+        # Option 2: maintain the Frame for the entire operation, and open Toplevels for en/decryption
     def load_game(self):
         pass
