@@ -14,6 +14,9 @@ crypt
 location
 selected_file
 raw_file
+original
+password_field
+password
 """
 
 # This class generates the GUI for the program and runs the main menu
@@ -41,22 +44,22 @@ class MainMenu(tk.Frame):
         tk.Button(self.main, text='Quit program', command=main.destroy, anchor='center').grid(column=2, row=2, sticky='NSEW')
     # def __init__
 
-    # This function calls the EncryptMenu class to encrypt data.
+    # This function calls the FileMenu class to encrypt data.
     def encrypt(self):
-        crypt = CryptMenu(self, 'En')
+        crypt = FileMenu(self, 'En')
     # End encrypt
 
-    # This function calls the DecryptMenu class to decrypt data.
+    # This function calls the FileMenu class to decrypt data.
     def decrypt(self):
-        crypt = CryptMenu(self, 'De')
+        crypt = FileMenu(self, 'De')
     # End decrypt
 # End MainMenu
 
 # This class loads the encryption or decryption menu to allow the user to encrypt or decrypt a file.
 # tk.Toplevel: classobj: provides the Tkinter Toplevel interface as a superclass
-class CryptMenu(tk.Toplevel):
-    # This function allows the user to select the file to encrypt or decrypt
-    # main: instance: an instance of Tk that becomes the parent of the Toplevel class
+class FileMenu(tk.Toplevel):
+    # This function allows the user to select the file to encrypt or decrypt.
+    # main: instance: an instance of Tkinter Frame that becomes the parent of the Toplevel class
     # action: str: indicates whether the file will be encrypted or decrypted
     def __init__(self, main, action):
         # Initialize window
@@ -89,10 +92,37 @@ class CryptMenu(tk.Toplevel):
         if selected_file is not None:
             self.lift() # Lifts Toplevel window again after file is selected
         # End if selected_file
-                
+    # End file_select
+    
+    # This function loads the selected file into the program and calls the PasswordMenu class to start encryption/decryption.
     def open_file(self):
-        self.raw_file = self.location.get('1.0', 'end-1c')
-# End CryptMenu
+        # Read the file into a variable
+        with open(self.location.get('1.0', 'end-1c'), 'r') as raw_file:
+            self.original = raw_file.read()
+        
+        self.destroy()
+        crypt = PasswordMenu(self.main)
+    #End open_file
+# End FileMenu
+
+# This class requests the password, and calls the encryption/decryption functions
+# tk.Toplevel: classobj: provides the Tkinter Toplevel interface as a superclass
+class PasswordMenu(tk.Toplevel):
+    # This function requests a password from the user.
+    # main: instance: an instance of Tkinter Frame that becomes the parent of the Toplevel class
+    def __init__(self, main):
+        # Initialize window
+        tk.Toplevel.__init__(self, main)
+        self.main = main
+        self.title('Enter Password')
+        
+        # Add widgets to enter password and describe requirements
+        tk.Label(self, text='Please enter a password which meets the following requirements:\n'+
+                 '    - ASCII characters only (ex. numbers, letters, symbols appearing on a standard US English keyboard\n'+
+                 '    - Minimum length of 3 characters', justify='left').grid(columnspan=3, column=0, row=0)
+        tk.Label(self, text='Password:', anchor='w').grid(column=0, row=1, sticky='W')
+        self.password_field = tk.Entry(self)
+        self.password_field.grid(columnspan=3, column=0, row=1, padx=(70,0), sticky='NSEW') # Needs OK button and verify function
 
 a = MainMenu()
 a.mainloop()
