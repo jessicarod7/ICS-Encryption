@@ -61,7 +61,7 @@ class CryptMenu(tk.Toplevel):
     def __init__(self, main, action):
         # Initialize window
         tk.Toplevel.__init__(self, main)
-        self.attributes('-topmost', 'true')
+        self.lift()
         self.main = main
         self.action = action
         self.title('{}crypt Data'.format(self.action))
@@ -79,13 +79,16 @@ class CryptMenu(tk.Toplevel):
     # This function uses tkFileDialog to allow the user to select a specific file.
     def file_select(self):
         # Open GUI to select file
+        selected_file = None
         selected_file = tkFileDialog.askopenfilename(initialdir='H:/', title = 'Select File', filetypes=(('Text Documents', '*.txt'), ('Markdown Document', '*.md'),
                                                                                                          ('Rich Text Format', '*.rtf'), ('All Files', '*.*')))
         
         # Replace text box contents with selected file
         self.location.delete('1.0', tk.END)
         self.location.insert(tk.END, selected_file)
-        self.lift() # Needs to lift after GUI file select closes
+        if selected_file is not None:
+            self.lift() # Lifts Toplevel window again after file is selected
+        # End if selected_file
                 
     def open_file(self):
         self.raw_file = self.location.get('1.0', 'end-1c')
