@@ -6,6 +6,8 @@
 import Tkinter as tk
 import tkFileDialog
 
+import math # This module is used to split the password into sets of three
+
 """
 Data Dictionary
 
@@ -18,7 +20,11 @@ original
 password_field
 password
 key
-temp
+crypt_text
+invalid
+key_trio
+key_val
+key_half
 """
 
 # This class generates the GUI for the program and runs the main menu
@@ -101,21 +107,23 @@ class FileMenu(tk.Toplevel):
         # Read the file into a variable
         with open(self.location.get('1.0', 'end-1c'), 'r') as raw_file:
             self.original = raw_file.read()
-        
+        # End with open
         self.destroy()
-        crypt = PasswordMenu(self.main)
+        crypt = PasswordMenu(self.main, self.action)
     #End open_file
 # End FileMenu
 
-# This class requests the password, and calls the encryption/decryption functions
+# This class requests the password, and calls the encryption/decryption functions.
 # tk.Toplevel: classobj: provides the Tkinter Toplevel interface as a superclass
 class PasswordMenu(tk.Toplevel):
     # This function requests a password from the user.
     # main: instance: an instance of Tkinter Frame that becomes the parent of the Toplevel class
-    def __init__(self, main):
+    # action: str: indicates whether the file will be encrypted or decrypted
+    def __init__(self, main, action):
         # Initialize window
         tk.Toplevel.__init__(self, main)
         self.main = main
+        self.action = action
         self.title('Enter Password')
         
         # Add widgets to enter password and describe requirements
@@ -123,8 +131,8 @@ class PasswordMenu(tk.Toplevel):
                  '    - Minimum length of 3 characters', justify='left').grid(columnspan=3, column=0, row=0)
         tk.Label(self, text='Password:', anchor='w').grid(column=0, row=1, sticky='W')
         self.password_field = tk.Entry(self)
-        self.password_field.grid(columnspan=3, column=0, row=1, padx=(60,27), sticky='NSEW') 
-        tk.Button(self, text='OK', command=self.check_password).grid(column=2, row=1, sticky='NSE')
+        self.password_field.grid(columnspan=3, column=0, row=1, padx=(60,200), sticky='NSEW')
+        tk.Button(self, text='{}crypt my data'.format(self.action), command=self.check_password).grid(column=2, row=1, sticky='NSE')
     # End __init__
 
     # This function ensures that the password given is valid, and runs the encryption/decryption program if so.
@@ -134,17 +142,63 @@ class PasswordMenu(tk.Toplevel):
         if len(self.password) >= 3:
             self.destroy()
             key = encryption_key(self.password) # Generate the encryption key
+            crypt_text = crypt(key, self.action)
         else:
-            temp = tk.Toplevel(self)
-            temp.title('Invalid Password')
-            tk.Label(temp, text='The password provided contains invalid characters.'+
+            invalid = tk.Toplevel(self)
+            invalid.title('Invalid Password')
+            tk.Label(invalid, text='The password provided contains invalid characters.'+
                      '\nPlease try again with ASCII characters.').grid(column=0, row=0)
-            tk.Button(temp, text='OK', command=temp.destroy, width=8).grid(column=0, row=1)
+            tk.Button(invalid, text='OK', command=invalid.destroy, width=8).grid(column=0, row=1)
 
 # This function generates the encryption key from the password
 # password: string: contains the user's password
 # Returns the encryption key
 def encryption_key(password):
+    key_trio=[]
+    key_val=0
+    key=[]
+    key_int=0
+    
+    # Generate first part of encryption key by splitting password into groups of three or less
+    for i in range(int(math.ceil(len(password)/3.0))): 
+        # Generate first character in key trio
+        key_trio[0] = str(ord(password[i*3]))
+        while int(key_trio[0]) >= 10: # Add digits to get a single digit result, repeating if necessary
+            key_trio[0] = str(key_trio[0])[-2] + str(key_trio[0])[-1]
+        # End while key_trio[0]
+        
+        try:
+            # Generate second character in key trio
+            key_trio[1] = str(ord(password[(i*3)+1]))
+            for j in range(-9, 0, -1): # Get single digit result from largest single digit factor
+                if int(key_trio[1]) % j == 0:
+                    key_trio[1] = str(j)
+                    break
+                # End if key_trio[1]
+            # End for j
+            
+            # Generate third character in key trio
+            key_trio[2] = str(ord(password[(i*3)+2]))
+            key_trio[2] = key_trio[2][-1] # Uses last digit of character value for single digit result
+        except IndexError: # End of password reached
+            break
+        # End try/except
+        
+        for j in key_trio:
+            key.append(j)
+        # End for j
+    # End for i
+    
+    key = ''.join(key)
+    
+    # Generate and add extra character in middle of key
+    key_val = (int(key) / len(key)) % 10
+    key_half = str(int(key) / 2)
+    key = key[:key_half] + key_val + key[key_half+1:]
+    
+    return key
+
+def crypt(key, action):
     pass
 
 a = MainMenu()
