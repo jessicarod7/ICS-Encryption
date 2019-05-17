@@ -37,7 +37,7 @@
 
 - ord() every character into a list
 - Modulo divide key[-3:] by 224 and right shift by that number, looping as necessary
-- Add 3*key[0] to every key[1]^th space in the original, looping as necessary
+- Add 3*key[0] to every key[3]^th space in the original, looping as necessary
 - Add digits of key repeatedly until the number is single digit, and then **insert** random.randint(0,223)+32 to every ^th position (this may not run, that's ok)
 - chr() back to a string and save
 
