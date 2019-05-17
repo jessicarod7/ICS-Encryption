@@ -17,6 +17,8 @@ raw_file
 original
 password_field
 password
+key
+temp
 """
 
 # This class generates the GUI for the program and runs the main menu
@@ -117,12 +119,33 @@ class PasswordMenu(tk.Toplevel):
         self.title('Enter Password')
         
         # Add widgets to enter password and describe requirements
-        tk.Label(self, text='Please enter a password which meets the following requirements:\n'+
-                 '    - ASCII characters only (ex. numbers, letters, symbols appearing on a standard US English keyboard\n'+
+        tk.Label(self, text='Please enter a password which meets the following requirement:\n'+
                  '    - Minimum length of 3 characters', justify='left').grid(columnspan=3, column=0, row=0)
         tk.Label(self, text='Password:', anchor='w').grid(column=0, row=1, sticky='W')
         self.password_field = tk.Entry(self)
-        self.password_field.grid(columnspan=3, column=0, row=1, padx=(70,0), sticky='NSEW') # Needs OK button and verify function
+        self.password_field.grid(columnspan=3, column=0, row=1, padx=(60,27), sticky='NSEW') 
+        tk.Button(self, text='OK', command=self.check_password).grid(column=2, row=1, sticky='NSE')
+    # End __init__
+
+    # This function ensures that the password given is valid, and runs the encryption/decryption program if so.
+    def check_password(self):
+        self.password = self.password_field.get()
+        
+        if len(self.password) >= 3:
+            self.destroy()
+            key = encryption_key(self.password) # Generate the encryption key
+        else:
+            temp = tk.Toplevel(self)
+            temp.title('Invalid Password')
+            tk.Label(temp, text='The password provided contains invalid characters.'+
+                     '\nPlease try again with ASCII characters.').grid(column=0, row=0)
+            tk.Button(temp, text='OK', command=temp.destroy, width=8).grid(column=0, row=1)
+
+# This function generates the encryption key from the password
+# password: string: contains the user's password
+# Returns the encryption key
+def encryption_key(password):
+    pass
 
 a = MainMenu()
 a.mainloop()
