@@ -31,7 +31,7 @@
 - Split into sets of 3
   - ord() and the 1st/2nd/3rd char in each set has its own numeric equivalent, append to in-progress key
 - Divide the sum of the digits by the number of digits (val1), then find the remainder of that number divided by 10 (val2)
-- Add val2 after the floor division halfway point of the in-progress key, and finally divide by val1 (gives key), appending val2 again repeatedly if key length is less than 3
+- Add val2 after the floor division halfway point of the in-progress key
 
 ### Text Encoding
 
