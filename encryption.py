@@ -20,11 +20,16 @@ original
 password_field
 password
 key
-crypt_text
+crypted_text
 invalid
 key_trio
 key_val
 key_half
+ascii_list
+key_shift
+triple_key
+single_key
+single_key_sum
 """
 
 # This class generates the GUI for the program and runs the main menu
@@ -109,7 +114,7 @@ class FileMenu(tk.Toplevel):
             self.original = raw_file.read()
         # End with open
         self.destroy()
-        crypt = PasswordMenu(self.main, self.action)
+        crypt = PasswordMenu(self.main, self.action, self.original, self.location)
     #End open_file
 # End FileMenu
 
@@ -119,11 +124,15 @@ class PasswordMenu(tk.Toplevel):
     # This function requests a password from the user.
     # main: instance: an instance of Tkinter Frame that becomes the parent of the Toplevel class
     # action: str: indicates whether the file will be encrypted or decrypted
-    def __init__(self, main, action):
+    # original: str: the file to be encrypted or decrypted
+    # location: str: the location of the original file
+    def __init__(self, main, action, original, location):
         # Initialize window
         tk.Toplevel.__init__(self, main)
         self.main = main
         self.action = action
+        self.original = original
+        self.location = location
         self.title('Enter Password')
         
         # Add widgets to enter password and describe requirements
@@ -142,13 +151,29 @@ class PasswordMenu(tk.Toplevel):
         if len(self.password) >= 3:
             self.destroy()
             key = encryption_key(self.password) # Generate the encryption key
-            crypt_text = crypt(key, self.action)
+            crypted_text = crypt(key, self.action, self.original)
+            result = FinalMenu(self.main, self.action, self.location, crypted_text)
         else:
             invalid = tk.Toplevel(self)
             invalid.title('Invalid Password')
             tk.Label(invalid, text='The password provided contains invalid characters.'+
                      '\nPlease try again with ASCII characters.').grid(column=0, row=0)
             tk.Button(invalid, text='OK', command=invalid.destroy, width=8).grid(column=0, row=1)
+        # End if len(self.password)
+    # End check_password
+# End PasswordMenu
+
+# This class lets the user select where to save the completed file.
+# tk.Toplevel: classobj: provides the Tkinter Toplevel interface as a superclass
+class FinalMenu(tk.Toplevel):
+    # This function introduces the user to the filesave menu.
+    # main: instance: an instance of Tkinter Frame that becomes the parent of the Toplevel class
+    # action: str: indicates whether the file will be encrypted or decrypted
+    # original: str: the file to be encrypted or decrypted
+    # location: str: the location of the original file
+    # crypted_text: str: the encrypted/decrypted text
+    def __init__(self, main, action, location, crypted_text):
+        pass
 
 # This function generates the encryption key from the password
 # password: string: contains the user's password
@@ -198,8 +223,92 @@ def encryption_key(password):
     
     return key
 
-def crypt(key, action):
-    pass
+# This function encrypts or decrypts the file depending on the option given.
+# key: str: the encryption key
+# action: str: indicates whether the file will be encrypted or decrypted
+# original: str: the file to be encrypted or decrypted
+# Returns the encrypted/decrypted file
+def crypt(key, action, original):
+    # Convert every char in original to its ASCII value
+    ascii_list = [ord(i) for i in original]
+    key_shift = int(key[-3:]) % 224 # Within the range of visible ASCII chars, 32-255
+    triple_key = 3 * int(key[0])
+    single_key = key
 
+    while len(single_key) > 1: # Add key digits until a single digit is reached
+        single_key_sum = 0
+        for i in range(len(single_key)):
+            single_key_sum += single_key[i]
+        # End for i
+        single_key = str(single_key_sum)
+    # End while len(single_key)
+    single_key += 100  # For printability
+
+    if action == 'En': # Encrypt file
+        # Shift to right by key_shift spaces, looping if necessary
+        for i in range(len(ascii_list)):
+            ascii_list[i] += key_shift
+            if ascii_list[i] > 255:
+                ascii_list[i] -= 224
+            # End if ascii_list[i]
+        # End for i
+
+        # Adds triple_key at interval, looping if necessary
+        if int(key[1]) == 0:
+            pass
+        else:
+            for i in range(1, (len(ascii_list)/int(key[1]))+1):
+                ascii_list[(i*int(key[1])) - 1] += triple_key
+                if ascii_list[i] > 255:
+                    ascii_list[i] -= 224
+                # End if ascii_list[i]
+            # End for i
+        # End if int(key[1])
+
+        # Inserts single_key in reverse order at interval
+        if int(key[2]) == 0:
+            pass
+        else:
+            for i in range((len(ascii_list)/int(key[2])), 0, -1):
+                ascii_list = ascii_list[:(i*int(key[2]))] + [single_key] + ascii_list[(i*int(key[2])):]
+            # End for i
+        # End if int(key[2])
+    else: # Decrypt file
+        # Removes single_key in reverse order at interval
+        if int(key[2]) == 0:
+            pass
+        else:
+            for i in range((len(ascii_list) / (1 + int(key[2]))), 0, -1): # Adjust interval to account for extra characters
+                del ascii_list[(i*int(key[2]))]
+            # End for i
+        # End if int(key[2])
+
+        # Subtracts triple_key at interval, looping if necessary
+        if int(key[1]) == 0:
+            pass
+        else:
+            for i in range(1, (len(ascii_list)/int(key[1]))+1):
+                ascii_list[(i*int(key[1])) - 1] += triple_key
+                if ascii_list[i] < 32:
+                    ascii_list[i] += 224
+                # End if ascii_list[i]
+            # End for i
+        # End if int(key[1])
+
+        # Shift to left by key_shift spaces, looping if necessary
+        for i in range(len(ascii_list)):
+            ascii_list[i] -= key_shift
+            if ascii_list[i] < 32:
+                ascii_list[i] += 224
+            # End if ascii_list[i]
+        # End for i
+    # End if action
+
+    # Convert to text and merge to string
+    ascii_list = [chr(i) for i in ascii_list]
+    crypted_text = ''.join(ascii_list)
+
+    return crypted_text
+    
 a = MainMenu()
 a.mainloop()
