@@ -30,6 +30,9 @@ key_shift
 triple_key
 single_key
 single_key_sum
+l
+b
+final_file
 """
 
 # This class generates the GUI for the program and runs the main menu
@@ -140,7 +143,7 @@ class PasswordMenu(tk.Toplevel):
                  '    - Minimum length of 3 characters', justify='left').grid(columnspan=3, column=0, row=0)
         tk.Label(self, text='Password:', anchor='w').grid(column=0, row=1, sticky='W')
         self.password_field = tk.Entry(self)
-        self.password_field.grid(columnspan=3, column=0, row=1, padx=(60,200), sticky='NSEW')
+        self.password_field.grid(columnspan=3, column=0, row=1, padx=(60,97), sticky='NSEW')
         tk.Button(self, text='{}crypt my data'.format(self.action), command=self.check_password).grid(column=2, row=1, sticky='NSE')
     # End __init__
 
@@ -173,29 +176,69 @@ class FinalMenu(tk.Toplevel):
     # location: str: the location of the original file
     # crypted_text: str: the encrypted/decrypted text
     def __init__(self, main, action, location, crypted_text):
-        pass
+        # Initialize window
+        tk.Toplevel.__init__(self, main)
+        self.main = main
+        self.action = action
+        self.location = location
+        self.crypted_text = crypted_text
+        self.title('Text {}crypted'.format(self.action))
+
+        # Describe result
+        self.l = tk.Label(self, text='Your file has been successfully {}crypted. On the next screen, you will select '+
+                 'where to save the file.'.format(action.lower())).grid(column=0, row=0)
+        self.b = tk.Button(self, text='OK').grid(column=0, row=1, command=self.save)
+    # End __init__
+
+    # This function lets the user choose where to save the file and does so
+    def save(self):
+        selected_file = None
+        self.location = self.location[:len(self.location)-(self.location[::-1].index('/'))] # Sets location to parent folder of original file
+
+        selected_file = tkFileDialog.asksaveasfilename(initialdir=self.location, title = 'Save File', filetypes=(('Text Documents', '*.txt'), ('Markdown Document', '*.md'),
+                                                                                                         ('Rich Text Format', '*.rtf'), ('All Files', '*.*')))
+        if selected_file is not None:
+            # Save file
+            with open(selected_file, 'w+') as final_file:
+                final_file.write(self.crypted_text)
+            # End with open
+
+            # Show confirmation window
+            self.l.destroy()
+            self.b.destroy()
+            
+            self.title('File Saved')
+            tk.Label(self, text='Your file has been saved').grid(column=0, row=0)
+            tk.Button(self, text='OK').grid(column=0, row=0)
+        # End if selected_file
+    # End save
 
 # This function generates the encryption key from the password
 # password: string: contains the user's password
 # Returns the encryption key
 def encryption_key(password):
-    key_trio=[]
     key_val=0
     key=[]
     key_int=0
     
     # Generate first part of encryption key by splitting password into groups of three or less
     for i in range(int(math.ceil(len(password)/3.0))): 
+        key_trio = [0, 0, 0]
+        
         # Generate first character in key trio
         key_trio[0] = str(ord(password[i*3]))
         while int(key_trio[0]) >= 10: # Add digits to get a single digit result, repeating if necessary
-            key_trio[0] = str(key_trio[0])[-2] + str(key_trio[0])[-1]
+            if int(key_trio[0]) >= 100:
+                key_trio[0] = str(int(key_trio[0][-3]) + int(key_trio[0][-2]) + int(key_trio[0][-1]))
+            else:
+                key_trio[0] = str(int(key_trio[0][-2]) + int(key_trio[0][-1]))
+            # End while key_trio[0]
         # End while key_trio[0]
         
         try:
             # Generate second character in key trio
             key_trio[1] = str(ord(password[(i*3)+1]))
-            for j in range(-9, 0, -1): # Get single digit result from largest single digit factor
+            for j in range(9, 0, -1): # Get single digit result from largest single digit factor
                 if int(key_trio[1]) % j == 0:
                     key_trio[1] = str(j)
                     break
@@ -206,20 +249,22 @@ def encryption_key(password):
             key_trio[2] = str(ord(password[(i*3)+2]))
             key_trio[2] = key_trio[2][-1] # Uses last digit of character value for single digit result
         except IndexError: # End of password reached
-            break
+            pass
         # End try/except
         
         for j in key_trio:
-            key.append(j)
+            if type(j) is str:
+                key.append(j)
+            # End if type(j)
         # End for j
     # End for i
     
     key = ''.join(key)
     
     # Generate and add extra character in middle of key
-    key_val = (int(key) / len(key)) % 10
-    key_half = str(int(key) / 2)
-    key = key[:key_half] + key_val + key[key_half+1:]
+    key_val = str((int(key) / len(key)) % 10)
+    key_half = len(key) / 2
+    key = key[:key_half] + key_val + key[key_half:]
     
     return key
 
@@ -310,5 +355,6 @@ def crypt(key, action, original):
 
     return crypted_text
     
-a = MainMenu()
-a.mainloop()
+# Start the program
+program = MainMenu()
+program.mainloop()
