@@ -30,8 +30,6 @@ key_shift
 triple_key
 single_key
 single_key_sum
-l
-b
 final_file
 """
 
@@ -116,6 +114,7 @@ class FileMenu(tk.Toplevel):
         with open(self.location.get('1.0', 'end-1c'), 'r') as raw_file:
             self.original = raw_file.read()
         # End with open
+        self.location = self.location.get('1.0', 'end-1c')
         self.destroy()
         crypt = PasswordMenu(self.main, self.action, self.original, self.location)
     #End open_file
@@ -185,9 +184,9 @@ class FinalMenu(tk.Toplevel):
         self.title('Text {}crypted'.format(self.action))
 
         # Describe result
-        self.l = tk.Label(self, text='Your file has been successfully {}crypted. On the next screen, you will select '+
-                 'where to save the file.'.format(action.lower())).grid(column=0, row=0)
-        self.b = tk.Button(self, text='OK').grid(column=0, row=1, command=self.save)
+        tk.Label(self, text='Your file has been successfully {}crypted. On the next screen, you will select '.format(action.lower())+
+                 'where to save the file.', height=2, wraplength=330).grid(column=0, row=0)
+        tk.Button(self, text='OK', command=self.save).grid(column=0, row=1)
     # End __init__
 
     # This function lets the user choose where to save the file and does so
@@ -204,12 +203,12 @@ class FinalMenu(tk.Toplevel):
             # End with open
 
             # Show confirmation window
-            self.l.destroy()
-            self.b.destroy()
+            self.destroy()
             
+            tk.Toplevel.__init__(self, self.main)
             self.title('File Saved')
-            tk.Label(self, text='Your file has been saved').grid(column=0, row=0)
-            tk.Button(self, text='OK').grid(column=0, row=0)
+            tk.Label(self, text='Your file has been saved.').grid(column=0, row=0, padx=30)
+            tk.Button(self, text='OK', command=self.destroy).grid(column=0, row=1)
         # End if selected_file
     # End save
 
@@ -283,11 +282,11 @@ def crypt(key, action, original):
     while len(single_key) > 1: # Add key digits until a single digit is reached
         single_key_sum = 0
         for i in range(len(single_key)):
-            single_key_sum += single_key[i]
+            single_key_sum += int(single_key[i])
         # End for i
         single_key = str(single_key_sum)
     # End while len(single_key)
-    single_key += 100  # For printability
+    single_key = str(int(single_key) + 100)  # For printability
 
     if action == 'En': # Encrypt file
         # Shift to right by key_shift spaces, looping if necessary
@@ -298,20 +297,20 @@ def crypt(key, action, original):
             # End if ascii_list[i]
         # End for i
 
-        # Adds triple_key at interval, looping if necessary
+        # Adds triple_key at intervals of key[1], looping if necessary
         if int(key[1]) == 0:
             pass
         else:
             for i in range(1, (len(ascii_list)/int(key[1]))+1):
                 ascii_list[(i*int(key[1])) - 1] += triple_key
-                if ascii_list[i] > 255:
-                    ascii_list[i] -= 224
-                # End if ascii_list[i]
+                if ascii_list[(i*int(key[1])) - 1] > 255:
+                    ascii_list[(i*int(key[1])) - 1] -= 224
+                # End if ascii_list[(i*int(key[1])) - 1]
             # End for i
         # End if int(key[1])
 
-        # Inserts single_key in reverse order at interval
-        if int(key[2]) == 0:
+        # Inserts single_key in reverse order at interval of key[2]
+        if int(key[2]) == 0 or int(key[2]) > len(ascii_list):
             pass
         else:
             for i in range((len(ascii_list)/int(key[2])), 0, -1):
@@ -319,24 +318,24 @@ def crypt(key, action, original):
             # End for i
         # End if int(key[2])
     else: # Decrypt file
-        # Removes single_key in reverse order at interval
-        if int(key[2]) == 0:
+        # Removes single_key in reverse order at intervals of key[2]
+        if int(key[2]) == 0 or int(key[2]) > len(ascii_list):
             pass
         else:
             for i in range((len(ascii_list) / (1 + int(key[2]))), 0, -1): # Adjust interval to account for extra characters
-                del ascii_list[(i*int(key[2]))]
+                del ascii_list[(i*int(key[2]) + 1)]
             # End for i
         # End if int(key[2])
 
-        # Subtracts triple_key at interval, looping if necessary
+        # Subtracts triple_key at interval of key[1], looping if necessary
         if int(key[1]) == 0:
             pass
         else:
             for i in range(1, (len(ascii_list)/int(key[1]))+1):
-                ascii_list[(i*int(key[1])) - 1] += triple_key
-                if ascii_list[i] < 32:
-                    ascii_list[i] += 224
-                # End if ascii_list[i]
+                ascii_list[(i*int(key[1])) - 1] -= triple_key
+                if ascii_list[(i*int(key[1])) - 1] < 32:
+                    ascii_list[(i*int(key[1])) - 1] += 224
+                # End if ascii_list[(i*int(key[1])) - 1]
             # End for i
         # End if int(key[1])
 
