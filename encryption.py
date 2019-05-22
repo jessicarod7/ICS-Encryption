@@ -11,26 +11,26 @@ import math # This module is used to split the password into sets of three
 """
 Data Dictionary
 
-main
-crypt
-location
-selected_file
-raw_file
-original
-password_field
-password
-key
-crypted_text
-invalid
-key_trio
-key_val
-key_half
-ascii_list
-key_shift
-triple_key
-single_key
-single_key_sum
-final_file
+main: instance: an instance of Tkinter Frame that becomes the parent of the Toplevel classes
+crypt: instance: creates and starts an instance of the FileMenu class
+location: instance/string: a Tkinter Text object that stores the file location, later converted to a string
+selected_file: string: the location of the file selected in the tkFileDialog
+raw_file: file: the opened file to be encrypted or decrypted
+original: string: the text of the file to be encrypted or decrypted
+password_field: instance: a Tkinter Label object where the user enters their password
+password: string: the user's password
+key: string: the numeric encryption key used to encrypt or decrypt the file
+crypted_text: string: the encrypted or decrypted text
+invalid: instance: a Tkinter Toplevel object that alerts the user if the password is too short
+key_trio: array: stores triples of characters from the password for key generation
+key_val: string: the ones digit of the key divided by its length, inserted into the final key
+key_half: int: the floor division of halfway in the key
+ascii_list: array: stores character of the file as ASCII decimals during encryption
+key_shift: int: the number by which characters are shifted
+triple_key: int: a number added to some characters
+single_key: int: the sum of all digits in the key, inserted at intervals in the encrypted file
+single_key_sum: int: used to calculate single_key
+final_file: file: writes the encrypted or decrypted text to a new file
 """
 
 # This class generates the GUI for the program and runs the main menu
@@ -158,8 +158,8 @@ class PasswordMenu(tk.Toplevel):
         else:
             invalid = tk.Toplevel(self)
             invalid.title('Invalid Password')
-            tk.Label(invalid, text='The password provided contains invalid characters.'+
-                     '\nPlease try again with ASCII characters.').grid(column=0, row=0)
+            tk.Label(invalid, text='The password provided is too short.'+
+                     '\nPlease use a password with at least three characters.').grid(column=0, row=0)
             tk.Button(invalid, text='OK', command=invalid.destroy, width=8).grid(column=0, row=1)
         # End if len(self.password)
     # End check_password
@@ -291,6 +291,9 @@ def crypt(key, action, original):
     if action == 'En': # Encrypt file
         # Shift to right by key_shift spaces, looping if necessary
         for i in range(len(ascii_list)):
+            if ascii_list[i] < 32: # A functional character (ex. newline)
+                continue
+            # End if i
             ascii_list[i] += key_shift
             if ascii_list[i] > 255:
                 ascii_list[i] -= 224
@@ -302,6 +305,9 @@ def crypt(key, action, original):
             pass
         else:
             for i in range(1, (len(ascii_list)/int(key[1]))+1):
+                if ascii_list[(i*int(key[1])) - 1] < 32:
+                    continue
+                # End if i
                 ascii_list[(i*int(key[1])) - 1] += triple_key
                 if ascii_list[(i*int(key[1])) - 1] > 255:
                     ascii_list[(i*int(key[1])) - 1] -= 224
@@ -332,6 +338,9 @@ def crypt(key, action, original):
             pass
         else:
             for i in range(1, (len(ascii_list)/int(key[1]))+1):
+                if ascii_list[(i*int(key[1])) - 1] < 32:
+                    continue
+                # End if i
                 ascii_list[(i*int(key[1])) - 1] -= triple_key
                 if ascii_list[(i*int(key[1])) - 1] < 32:
                     ascii_list[(i*int(key[1])) - 1] += 224
@@ -341,6 +350,9 @@ def crypt(key, action, original):
 
         # Shift to left by key_shift spaces, looping if necessary
         for i in range(len(ascii_list)):
+            if ascii_list[i] < 32: 
+                continue
+            # End if i
             ascii_list[i] -= key_shift
             if ascii_list[i] < 32:
                 ascii_list[i] += 224
