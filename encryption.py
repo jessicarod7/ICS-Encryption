@@ -286,7 +286,7 @@ def crypt(key, action, original):
         # End for i
         single_key = str(single_key_sum)
     # End while len(single_key)
-    single_key = str(int(single_key) + 100)  # For printability
+    single_key = int(single_key) + 100  # For printability
 
     if action == 'En': # Encrypt file
         # Shift to right by key_shift spaces, looping if necessary
@@ -313,7 +313,7 @@ def crypt(key, action, original):
         if int(key[2]) == 0 or int(key[2]) > len(ascii_list):
             pass
         else:
-            for i in range((len(ascii_list)/int(key[2])), 0, -1):
+            for i in range((len(ascii_list) / int(key[2])), 0, -1):
                 ascii_list = ascii_list[:(i*int(key[2]))] + [single_key] + ascii_list[(i*int(key[2])):]
             # End for i
         # End if int(key[2])
@@ -323,7 +323,7 @@ def crypt(key, action, original):
             pass
         else:
             for i in range((len(ascii_list) / (1 + int(key[2]))), 0, -1): # Adjust interval to account for extra characters
-                del ascii_list[(i*int(key[2]) + 1)]
+                del ascii_list[(i*(int(key[2])+1)) - 1]
             # End for i
         # End if int(key[2])
 
