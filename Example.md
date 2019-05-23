@@ -1,65 +1,65 @@
-Below is an example of an encrypted file, specifically the [README](README.md). You can test decrypting the file with the password ```H3r0M0d3!```
+Below is an example of an encrypted file, specifically the [Terget file](Target.md). You can test decrypting the file with the password ```H3r0M0d3!```
 
 -----
 
-����k�,�
+¨¥çôkæ,ø
 k
-���k����k����k,��3k
+¨¨ÀkÆØãÎkÎÀûæk,úê3k
 
->#k�͸�k���%k��.�k�,��k>#��k
-�Ҳk�պ�kݥ��k��ԥk�!��k$��(k��3�k�
+>#kµÍ¸¶kÀæ÷%k¥î.ûkæ,îék>#¥Àk
+¸Ò²k·Õº¥kÝ¥¯Êk··Ô¥kû!ñîk$¥è(kæ÷3¯k¯
 
-�kå�%k��)�k�-��k4�
+¨kÃ¥×%köú)÷kê-êók4ø
 
-k��2�k�$��k2���k�0�k�3��k���8k��&�k�%
-�k���/k��$�k�4��k���4k��.�k�/��k.��9k����k����k#��0k�
-��k����k���#k��0�k����k1��3k��!�k�!��k7��$k��.�k�'��k%��4k�4�k����k#��0k��/�k�+��k
-���k����k�/��kȮ�#k��2�k�4��k3��.k�5�k����k#��0k��/�k�+��k����k��)�k����k4��2k�
-��k���k���!k����k���k.���k��,�k
-���k����k��#�k�0��k���1k��3�k�!��k!��7k��$�k�.�k'��%k��4�k�4��k���#k��0�k�/�k+��
-k��ͥk���k5���k��#�k�0��k/�+k����k����k)���k��4�k�2��k!���k��2�k����k!��#k��2�k
-���k���k��!�k����k��.k����k�,�
+k²¥2êkæ$¥ëk2ôòÀkæ¥0÷kê3êùkÀùê8kù¥&îkñ%
+²kÀõ÷/kûî$êk¥4íêkÀôõ4kîô.¥kù/¥êk.è÷9kõùÀôk÷Àéêk#÷þ0kù
+À¥k²ÀîëkÀêó#k÷þ0ùk±À÷êk1úê3kù¥!¥kõ!øøk7ô÷$k¥æ.ék¥'êók%÷æ4kê¥4íkêÀêók#÷þ0kùî/ók¥+êþk
+¥¥Ík¥àÀâk¥/÷ékÈ®¥#kíæ2ækè4ê÷k3¥æ.ké¥5økêÀêók#÷þ0kùî/ók¥+êþkÀùôÀkøí)ëkùÀñêk4ùê2kø
+À¥k²Àà¥ký¥ø!kûêÀùkôÀæ¥k.êüÀkëî,êk
+À¥²kÀîëÀkéê#÷kþ0ù±kÀ÷ê1kúê3ùk¥!¥õk!øø7kô÷$¥kæ.é¥k'êó%k÷æ4êk¥4íêkÀêó#k÷þ0ùkî/ó¥k+êþ
+k¥¥Í¥kàÀâ¥k5øêÀkêó#÷kþ0ùîk/ó¥+kêþÀùkôÀøík)ëùÀkñê4ùkê2ø¥k!óéÀkèí2­k®Àèík!÷æ#kùê2øk
+À¥²kÀà¥ýk¥ø!ûkêÀùôkÀæ¥.kêüÀëkî,ê
 k
-���k��)�k�/��k,��/k��3�k�
+¯¯ákéé)ùkî/óæk,¥Ì/kæñ3¯k¯
 
-�k���%k����k�饭k0��"k��,�k����k.��2k��4�k����k,��4k��(�k�)��k5��!k����k�4��k4��)k����k�4��k3���k��4�k�.��k/��#k����k����k,�$k��,�k�3��k����k��ڥk�+��k,��)k��/�k�2��k5��%k����k�.��k2��"k����k����k4��!k����k����k%��/k��,�k�
-��k����k��/�k�%��k&��-k��&�k�.��k9��)k����k����k$��.k����k�%��k(��4k��.�k�9��k)���k��3�k����k#��2k��4�k�.��k3��.k��)�k�4��k.�
-�k����k�ڥ�k/��k����k�#��k2��4k��/�k�!��k9���k��/�k�)�k/���k����k�$��k���,k����k�/��k)�#k��Ȯk
+²kÀÚø%k¥æÀÌkÚé¥­k0÷ô"kæç,þk¥ôðîk.ùê2k®¥4ôk¥ûøêk,êè4k¥ù(êk¥)óõk5ù¥!kóéÀôkú4õúk4¥ë)kñêý­kí4ùõk3¿´Ïkõþ4íkô.øõk/ù³#kôòÏùkðÍëîk,ê²$kîæ,ôkì3´®kÀ­ÓïkÙÊÚ¥kù+Ëîk,êÉ)kæñ/ìk¥2êök5î÷%kø¥ôðkî.ùêk2±¥"kúùÀîkøÀóôk4¥õ!k÷ùÀôkëÀùík%¥ò/kéú,êk®
+²¥kõøêÀkæó/ùkí%÷¥k&ô÷-k¥ô&¥kê.è÷k9õù)kôóÀÔk×Àæék$¥ô.kùôÀùkí%¥øk(îë4k¥ê.èk÷9õùk)ôóÀk­ú3êk¥ãíêk#ðè2kþõ4îkô.¥æk3¥î.køõ)÷kæ4îôk.®
+Ík¥ÓïÙkÊÚ¥ók/ó²ákØÈéÎk¥#íæk2ø¥4kí÷/ük¥!¥Ùk9õêåk÷÷/÷k¥)ó¥k/÷éÈk®±Àækó$¥ækÀÛæ,kúêå÷k÷/÷¥k)ó¥#kí÷È®k
 
-��k���#k��0�k�/�k���(k��
+¨¨kÀÊó#k÷þ0ùkî/ó¥kíêù(kôé
 
-k�è�k����k��.�k�!��k/�
+k¨Ã¨¥këêþÀkÌê.êk÷!ùîk/ó
 
-k��ʯk�.�k4��/k��̥k�!��k7��$k��/�k�%��k�
-��k��1�k�2�k4���k��3�k�/��k����k����k�,��k����k��-�k����k#��2k�
-ͥk�0��k4��.k����k�4��k/��k
-���k�/��kȮ�!k����k�%��k3���k��ϸk�$��k(���k����k�#��k3���k��3�k�4��k/���k��-�k�)�k%��)k��,�k�4��k!��%k����k����k���/k��%�k����k9
-��k��6�k�%��k(�3k����k����k%��)k��4�k�"��k4���k��-�k�2��k&��)k��4�k����k,���k��(�k����k.�4k����k�-��k.��2k��&�k�(��k���-k��2�k�)��k$���k����k����k!��k
-���k�$��k!��k��4�k����k%��,k��2�k�)��k3��.k��!�k�7��k���)k����k����k%��.k��2�k�2��k3��%k�
+k²¥Ê¯kÔ.ê¥k4ô¥/kóêÌ¥kõ!øøk7ô÷$k¥ù/¥kð%þ¯kÊ
+²Àk×ê1úkî2ê¥k4íêÀkõæ3økü/÷ékÀùôÀkçêÀækñ,¥ÆkóÈÎék±¥-îkóÀ¸¥k#íæ2kø
+Í¥kØ0ñîk4¥î.kùôÀøkê4ø¥k/ë¥Ók
+¥À²k¥/÷ékÈ®¥!kóéÀùkí%¥¶k3ù´ÒkóéÏ¸k÷$¥èk(æ÷ÀkîóÀêkæ#í¥k3êùÀkíæ3¥kî4ø¥k/üóÀkóú-êk÷)è¥k%öú)kûæ,êkó4±¥k!õõ%kóéÀùkôÀîókÍõ÷/kì÷%økøÀðêk9
+²ÀkÉî6îké%¥ùk(ê¥3kúòÀôkëÀùík%¥é)kìî4øk¥"þ¥k4íêÀkóú-çkê2¥ôk&¥é)kìî4øk¥Èûæk,¶®Ìk¥ù(êkóÀëîk.é¥4kíêÀ÷kê-æîk.éê2k¥ô&¥kù(æùkÀóú-kçê2¥ké)ûîk$êéÀkçþÀ¶kµÀ­ûk!ñ·Ék
+²ÀÆké$¥ûk!ñ·Àkæë4êk÷Àùík%¥ë,kôô2¥ké)ûîk3îô.k¥í!ñkë7æþkÀõô)kóùÀôkëÀùík%¥î.k²õ2ôkì2êøk3¥ð%kþ
 
-�k�å�k%���k��#�k�)��k
+¨k¨Ã¥Ùk%ýùÀkÊó#ôké)óìk
 
-��k��$�k����k%���k��!�k�#��k2��.k����k�,��k4
-��k��$�k�/��k)��$k�+�k����k��"k��ҷk����k$��)k��4�k�(��k4��9k��(�k����k-��2k��,�k�0��k'��3k��%�k�3��k2�
-�k��$�k�ӯ�k%���k�4�k�%��k2��+k����k����k���!k����k����k%��2k��)�k�,��k,��0k��'�k�3��k%��3k��2�k
-ͥ�k$�$k��)�k����k���9k��%�k�!��k$���k��4�k����k%��5k��%�k�)��k3��'k����k�'��k̥�.k�4�k�.��k���3k��4�k����k.��-k��!�k�)��kȵ��k��ɰk�ҥ�k/��6k��9�k�4��k0��)k��/�k����k)��-k����k�4��k5��k��!�k�3��k+�
-�k��(�k�ɥ�k!���k����k�3��k)���k��$�k�!��k
+²Àkô÷$­k®Àêûk%÷þÀkèí!÷kæ#ùêk2¥î.kùôÀæk¥,îøk4
+²ÀkÒô$úkñ/¥ék)ûî$kê¥+êkþû²¸kÚâ¥"kþ¥Ò·k¹Àæók$¥÷)kìí4¥kø(îëk4¥ç9k¥ù(ækùÀóúk-çê2k±¥,ôkô0îók'¥æ3k¥ó%èkê3øæk2þ
+Ík¥Æ$ék¥Ó¯ðk%þàÐkâ¥4ôk¥%ûêk2þ¥+kêþû¸kâþùíkÀøõ!kèêÀîkóÀùík%¥ô2kîì)ókæ,±¥k,ôô0kîó'¥kæ3¥ók%èê3køæ2þk
+Í¥Æk$é¥$kîì)ùkøÀôëkÀðê9k¥÷%õkê!ùêk$ñþÀkúó4îkñÀùík%¥ó5kòç%÷k¥)ø¥k3îó'kñêÀékî'îùkÌ¥æ.ké¥4íkê.¥¯kÊîó3kê÷4¯k¯À÷æk.éô-k³÷!óké)óùkÈµ±Òk·¸É°k¸Ò¥ùk/¥ê6kê÷9¥kã4í¥k0ôø)kùî/ók¥Èùík)ø¥-kæþÀókô4¥÷k5ó±Àkùí!ùk¬3¥ôk+®
+Ík¥è(÷k­É¥çk!èðÀkùôÀæk¥3ù÷k)óìÀkæó$¥kø!ûêk
 
-��k����k�4��k%��$k��'
+¨Ãk¨¥ôêký4¥Ék%èô$kîó'
 k
-ͥ�k2��k��6�k�9��k(��!k��%�k�)��k/���k��3�k
-ͥ�k$�$k��)�k����k���9k��%�k�!��k$���k��4�k����k%��5k��%�k�)��k3��'k����k�'��k̥�(k����k�.��k/��4k��.�k�3��k)��2k��/�k�(�k&��,k��)�k����k$��k��3�k�$��k.�6k��)�k�%�k�
+Í¥ôk2é­Ék¥ê6êk÷9¥èk(æ÷!kèù%÷k¥)óùk/¥æÀkñî3ùk
+Í¥Æk$é¥$kîì)ùkøÀôëkÀðê9k¥÷%õkê!ùêk$ñþÀkúó4îkñÀùík%¥ó5kòç%÷k¥)ø¥k3îó'kñêÀékî'îùkÌ¥ù(kêóÀ÷kú.¥øk/òê4kíî.ìk¥3îòk)ñæ2k¥ù/¥kù(ê¥k&ôñ,kôü)ókìÀèôk$ê¥Èkùê3ùkê$¥æk.é¥6kê÷)ëkî%é®kÚ
 
- k��0�k�(��k
-���k��ѱk�̶�kѱ��k��ѱk�̶�k
+ kåå0þkù(ôók
+æÂûk¶±Ñ±k·Ì¶±kÑ±·Ìk¶±Ñ±k·Ì¶âk
 
-�/k��)�k�.��k!��%k��ɿk�å�k�¥.k��"�k����k���-k����k����k.��/k��)�k�%��k#��2k��$�k�)��k/�-k��(�k�%��k�
-��k��$�k����kү�)k����k�å�k�¥4k����k�.��k%��)k��4�k�5��k%��&k��-�k�(�k+��
-k�� 
+ë/k÷¥)¥kî.¥÷k!óì%k­óÉ¿k¥Ã¥ókÀÂ¥.kúò"êk÷ÀôëkÀùî-kêøÀîkùÀèæk.¥õ/køø)çkñ%¥ôk#èú2k¥­$îkû)øîk/ó¥-kæù(¥k÷%ö³kÉ
+¥Àk¥¥$êkñÀæàkÒ¯­)k°¶Éâk¥Ã¥·kÀÂ¥4kíêÀøkî.ìñk%¥é)kìî4¥kó5òçk%÷¥&k÷ô-¥kù(ê¥k+êþ
+kåå 
 k
-ͥ�k5��2k��4�k����k9��k��2�k����k%���k��9�k����k(��0k��%�k�.��k(�/k��'�k�!�k���6k��3�k�,��k0��'k��3�k�%��k3��2k�
-ͥk�/��k,��$k��)�k����k9��k����k����kԥ�.k�,�k�4��k(��4k��9�k�(��k���-k��2�k�,��k0��'k��3�k�%��k3��2k�
-ͥk�(��kɥ�!k����k���k3��)k����k�$��k!��
+Í¥Øk5çù2kæè4¥k¸Êðêk9àµýk¥ë2ôkòÀêûk%÷þÀkðê9àk¶ýãùk(¥ø0kæè%¥kî.¥ùk(ê¥/k÷î'îkó!ñ±kÀ÷ê6kê÷3êk¥,ôôk0îó'k¥æ3¥kó%èêk3øæ2kþ
+Í¥kÒ/éúk,ô¥$kîû)ékêÀðêk9à²Ók¿âÀçkþÀ··kÔ¥æ.ké¥,êkë4¥øk(îë4k¥ç9¥kù(æùkÀóú-kçê2±k¥,ôôk0îó'k¥æ3¥kó%èêk3øæ2kþ
+Í¥kè(÷­kÉ¥ç!kèðÀùkôÀæ¥k3ù÷)kóìÀækó$¥øk!ûê
 k
-�(�k�0��kϴ�9k��/�k�2��k2��-k��'�k�%��k/��%k����k�)��k4���k��/�k�!��k)���k��!�k����k5��%k��+�k�4��k��(k��0�k�ϴ�k9��/k��2�k�2��k-��'k��%�k�/��k%���k��)�k�4��k���/k��!�k�)��k���!k����k�5��k%��+k��4�k�Ϯ
+à(ùkù0ø¿kÏ´õ9kùí/ókõ2ôìk2æò-kîó'³kó%ù´k/çï%kèùÍôk÷)êók4êéÍkõ÷/ìk÷!òòk)óìÍkè÷!økíÍèôk5÷ø%k²ù+îkó4ê÷kÏâ­(kùù0øk¿Ï´õk9ùí/kóõ2ôkì2æòk-îó'k³ó%ùk´/çïk%èùÍkô÷)êkó4êékÍõ÷/kì÷!òkò)óìkÍè÷!køíÍèkô5÷øk%²ù+kîó4êk÷Ï®
 k
