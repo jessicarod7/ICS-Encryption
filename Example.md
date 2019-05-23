@@ -1,4 +1,4 @@
-Below is an example of an encrypted file, specifically the [Terget file](Target.md). You can test decrypting the file with the password ```H3r0M0d3!```
+Below is an example of an encrypted file, specifically the [Target file](Target.md). You can test decrypting the file with the password ```H3r0M0d3!```
 
 -----
 
