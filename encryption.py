@@ -1,5 +1,5 @@
 # Cameron Rodriguez
-# Date
+# May 23, 2019
 # This program encrypts and decrypts files.
 
 # These modules generates the GUI for the program
